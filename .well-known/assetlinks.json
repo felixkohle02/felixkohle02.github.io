@@ -1,11 +1,14 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.beavergoose.leita",
       "sha256_cert_fingerprints": [
-        "FA:53:FD:55:CE:F3:FB:8A:EB:0F:19:9B:D7:BA:20:F6:83:3A:64:95:FF:58:FE:DF:09:4B:24:B6:5C:B1:82:96"
+        "FA:53:FD:55:CE:F3:FB:8A:EB:0F:19:9B:D7:BA:20:F6:83:3A:64:95:FF:58:FE:DF:09:4B:24:B6:5C:B1:82:96",
+        "D8:58:5E:E6:24:25:BD:6A:04:1C:4D:1C:10:A5:B1:A6:42:7E:AA:8E:F1:27:8A:C7:32:F6:F2:44:B9:8E:33:28"
       ]
     }
   }
