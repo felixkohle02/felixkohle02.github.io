@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leita – Herausforderung</title>
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Leita – Herausforderung">
+<meta property="og:description" content="Jemand fordert dich heraus: Spiel dasselbe Wort in Leita und vergleicht eure Versuche.">
+<style>
+  body { margin: 0; padding: 2rem 1rem; font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; color: #1c2126; background: #fafaf8; }
+  main { max-width: 28rem; margin: 0 auto; }
+  h1 { font-size: 1.6rem; margin: 0 0 .6rem; }
+  p { margin: .8rem 0; }
+  .button { display: block; text-align: center; padding: .9rem 1rem; border-radius: 12px; background: #0f5e5a; color: #fff; text-decoration: none; font-weight: 600; }
+  .secondary { background: #e6ecea; color: #0f5e5a; }
+  .hint { color: #5a6269; font-size: .95rem; }
+  .code { font: 600 1.4rem/1.4 ui-monospace, Consolas, monospace; letter-spacing: .12em; text-align: center; padding: .6rem; border: 1px dashed #9aa6a3; border-radius: 10px; user-select: all; }
+  .small { color: #5a6269; font-size: .85rem; }
+  a { color: #0f5e5a; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Leita – Herausforderung</h1>
+  <p id="intro">Jemand fordert dich heraus: Spiel dasselbe Wort in Leita und vergleicht eure Versuche.</p>
+  <p><a id="open" class="button" href="#">In Leita öffnen</a></p>
+  <p><a id="store" class="button secondary" href="https://play.google.com/store/apps/details?id=com.beavergoose.leita">Leita im Play Store laden</a></p>
+  <p class="hint">Leita gerade erst installiert? Dann diesen Link noch einmal antippen – oder den Code in Leita unter Einstellungen → „Rätsel per Seed“ eintragen:</p>
+  <p class="code" id="code">–</p>
+  <p class="small">Leita ist kostenlos, offline, ohne Werbung und ohne Konto. Diese Seite speichert nichts und lädt nichts nach.
+    <a href="/legal/datenschutz-leita.html">Datenschutz</a> · <a href="/legal/impressum.html">Impressum</a></p>
+</main>
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var code = (params.get('k') || '').replace(/[^0-9A-Za-z]/g, '').toUpperCase();
+  var codeEl = document.getElementById('code');
+  var open = document.getElementById('open');
+  if (!code) {
+    codeEl.textContent = 'Kein Code im Link.';
+    open.style.display = 'none';
+    return;
+  }
+  codeEl.textContent = code;
+  var store = 'https://play.google.com/store/apps/details?id=com.beavergoose.leita';
+  var ua = navigator.userAgent;
+  if (/Android/i.test(ua) && /Chrome/i.test(ua)) {
+    // Chrome on Android: open the app, or fall back to the store.
+    open.href = 'intent://c/?k=' + code + '#Intent;scheme=leita;package=com.beavergoose.leita;S.browser_fallback_url=' + encodeURIComponent(store) + ';end';
+  } else {
+    open.href = 'leita://c/?k=' + code;
+  }
+})();
+</script>
+</body>
+</html>
